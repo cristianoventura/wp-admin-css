@@ -33,26 +33,37 @@ function wp_admin_css_add_menu() {
 }
 add_action( 'admin_menu', 'wp_admin_css_add_menu' );
 
-function wp_admin_css_get_users_dropdown() {
-	$output = '<option value="*" selected>All users</option>';
+function wp_admin_css_get_users_list() {
+	$output = '<table class="wp-admin-css-users">
+		<tr>
+			<th>User</th>
+			<th>Roles</th>
+		</tr>';
 	foreach( get_users() as $user ) {
-		$output .= '<option value="' . $user->ID . '">' . $user->display_name . '</option>';
+		$output .= '<tr class="wp-admin-css-users__item">
+			<td class="wp-admin-css-users__checkbox">
+				<input type="checkbox" class="wp-admin-css-check" value="' . $user->ID . '" />
+				<span>' . $user->display_name . '</span>
+			</td>
+			<td>' . implode( ', ', $user->roles ) . '</td>
+		</div>';
 	}
-	return $output;
+	return $output . '</table>';
 }
 
 function wp_admin_css_render() { ?>
 	<h1><?php echo esc_html( WP_ADMIN_CSS, TEXTDOMAIN ); ?></h1>
-	<p>Select the user you want to add the css</p>
-	<select id="user">
-		<?php echo wp_admin_css_get_users_dropdown(); ?>
-	</select>
-	<a href="#" class="button action">Select</a>
-	<div id="editor">
+	<div id="wp-admin-css-editor">
 	/* body {
 		font-family: 'Your custom font';
-	} /*
+	} */
 	</div>
+	<form action="#" method="post" class="wp-admin-css-form">
+		<h2 class="hndle">Select the users you want to apply the css:</h2>
+		<?php echo wp_admin_css_get_users_list(); ?>
+		<a href="#" class="button action" id="wp-admin-css-toggle">Toggle Select</a>
+		<button type="submit" class="button button-primary button-large">Save</button>
+	</select>
 <?php
 }
 

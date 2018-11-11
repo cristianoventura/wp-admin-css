@@ -1,5 +1,32 @@
-#editor { 
+#wp-admin-css-editor { 
 	height: 400px;
 	margin-top: 20px;
 	width: 100%;
+}
+
+table.wp-admin-css-users {
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+table.wp-admin-css-users th {
+	text-align: left;
+}
+
+table.wp-admin-css-users th, td {
+	border-bottom: 1px solid #dcdcdc;
+	padding: 10px 0;
+}
+
+.wp-admin-css-form {
+	background: #fff;
+    padding: 15px;
+    margin: 20px 20px 0 0;
+}
+
+.wp-admin-css-form h2 {
+	border-bottom: 1px solid #dcdcdc;
+    font-size: 14px;
+    padding-bottom: 10px;
+	margin: 0;
 }
